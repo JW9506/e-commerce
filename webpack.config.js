@@ -65,7 +65,7 @@ module.exports = (_, { mode = "production" }) => {
               test: /\.(jpe?g|png|gif|svg)$/i,
               loader: "url-loader",
               options: {
-                limit: 8 * 1024,
+                limit: 0.5 * 1024,
                 name: "[contenthash:10].[ext]",
                 outputPath: "imgs",
                 publicPath: `${publicURLRoot}/imgs`.replace(/\/+/g, "/")
@@ -110,7 +110,8 @@ module.exports = (_, { mode = "production" }) => {
         title: SPATitle,
         minify: {
           removeComments: isProduction,
-          collapseWhitespace: isProduction
+          collapseWhitespace: isProduction,
+          minifyJS: isProduction
         },
         favicon: "public/favicon.ico"
       }),

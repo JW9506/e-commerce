@@ -4,3 +4,4 @@ download.sh
 /dist
 /src/imgs
 *.log
+*.psd
