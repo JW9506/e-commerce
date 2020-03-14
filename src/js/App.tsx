@@ -2,13 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ShopPage from "./pages/ShopPage";
 import HomePage from "./pages/HomePage";
+import Header from "./components/Header";
 import { PUBLIC_URL } from "Config";
 
 class App extends React.Component {
   render() {
-    console.log(PUBLIC_URL);
     return (
       <Router>
+        <Header />
         <Switch>
           <Route path={`${PUBLIC_URL}/`} exact>
             <HomePage />
