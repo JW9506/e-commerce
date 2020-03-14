@@ -2,5 +2,5 @@
 download.sh
 /dll
 /dist
-/src/imgs
 *.log
+*.psd
