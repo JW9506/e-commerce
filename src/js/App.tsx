@@ -14,6 +14,7 @@ const AAA: React.FC = props => {
 
 class App extends React.Component {
   render() {
+    console.log(PUBLIC_URL);
     return (
       <Router>
         <Switch>
