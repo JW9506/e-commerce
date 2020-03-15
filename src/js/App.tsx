@@ -16,7 +16,6 @@ export type User = {
   createdAt: string;
   email: string;
   displayName: string;
-  [field: string]: any;
 } | null;
 interface AppState {
   currentUser: User;
@@ -32,15 +31,15 @@ class App extends React.Component<{}, AppState> {
       const userRef = await createUserProfileDocument(user);
       if (userRef) {
         userRef.onSnapshot(snapshot => {
-          const { displayName, email, createdAt } = snapshot.data() as any;
-          this.setState({
-            currentUser: {
-              id: snapshot.id,
-              displayName,
-              createdAt,
-              email
-            }
-          });
+          const data = snapshot.data();
+          if (data && data.displayName) {
+            this.setState({
+              currentUser: {
+                id: snapshot.id,
+                ...data
+              } as User
+            });
+          }
         });
       }
     });
