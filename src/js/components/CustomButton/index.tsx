@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import "./index.scss";
 
-interface CustomButtonProps {
+interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: () => Promise<any>;
   isGoogleSignIn?: boolean;
   [props: string]: any;

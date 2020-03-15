@@ -1,8 +1,8 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import clsx from "clsx";
 import "./index.scss";
 
-interface FormInputProps {
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   handleChange: React.ChangeEventHandler;
   value: string;
   label?: string;

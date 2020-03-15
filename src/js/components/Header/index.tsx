@@ -3,7 +3,8 @@ import { PUBLIC_URL } from "Config";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import "./index.scss";
-import { User, auth } from "../../../firebase/utils";
+import { auth } from "../../../firebase/utils";
+import { User } from "../../App";
 
 interface HeaderProps {
   currentUser: User;
