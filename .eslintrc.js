@@ -12,6 +12,7 @@ module.exports = {
     "@typescript-eslint/member-delimiter-style": 0,
     "@typescript-eslint/no-non-null-assertion": 0,
     "@typescript-eslint/no-unused-vars": 0,
+    "@typescript-eslint/no-explicit-any": 0,
     "react/prop-types": 0
   },
   parserOptions: {
