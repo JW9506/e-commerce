@@ -9,7 +9,7 @@ export interface UserReducerAction<T> {
   type: ACTION_TYPE;
   payload: T;
 }
-export const setCurrentUserAction = <T>(user: T): UserReducerAction<T> => ({
+export const setCurrentUserAction = <T extends User>(user: T): UserReducerAction<T> => ({
   type: "SET_CURRENT_USER",
   payload: user
 });
