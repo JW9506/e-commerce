@@ -3,18 +3,18 @@ import clsx from "clsx";
 import "./index.scss";
 
 interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick?: () => Promise<any>;
   isGoogleSignIn?: boolean;
-  [props: string]: any;
+  inverted?: boolean;
 }
 const CustomButton: React.FC<CustomButtonProps> = ({
   children,
   isGoogleSignIn,
+  inverted,
   ...otherProps
 }) => {
   return (
     <button
-      className={clsx("custom-button", isGoogleSignIn && "google-sign-in")}
+      className={clsx("custom-button", isGoogleSignIn && "google-sign-in", inverted && "inverted")}
       {...otherProps}
     >
       {children}
