@@ -4,12 +4,17 @@ import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import "./index.scss";
 import { auth } from "../../../firebase/utils";
-import { User } from "../../App";
+import { User } from "../../../redux/user/action";
+import { connect, MapStateToProps } from "react-redux";
+import { RootState } from "../../../redux";
 
-interface HeaderProps {
+interface StateProps {
   currentUser: User;
 }
-const Header: React.FC<HeaderProps> = ({ currentUser }) => {
+type HeaderProps = StateProps;
+
+const Header: React.FC<HeaderProps> = props => {
+  const { currentUser } = props;
   return (
     <div className="header">
       <Link to={`${PUBLIC_URL}/`} className="logo-container">
@@ -36,4 +41,12 @@ const Header: React.FC<HeaderProps> = ({ currentUser }) => {
   );
 };
 
-export default Header;
+const mapStateToProps: MapStateToProps<
+  StateProps,
+  {},
+  RootState
+> = state => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header);
