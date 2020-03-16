@@ -5,16 +5,19 @@ import { FaHome } from "react-icons/fa";
 import "./index.scss";
 import { auth } from "$firebase/utils";
 import { User } from "$redux/user/action";
+import CartIcon from "../CartIcon";
+import CartDropdown from "../CartDropdown";
 import { connect, MapStateToProps } from "react-redux";
 import { RootState } from "$redux";
 
 interface StateProps {
   currentUser: User;
+  hidden: boolean;
 }
 type HeaderProps = StateProps;
 
 const Header: React.FC<HeaderProps> = props => {
-  const { currentUser } = props;
+  const { currentUser, hidden } = props;
   return (
     <div className="header">
       <Link to={`${PUBLIC_URL}/`} className="logo-container">
@@ -36,13 +39,16 @@ const Header: React.FC<HeaderProps> = props => {
             sign in
           </Link>
         )}
+        <CartIcon />
       </div>
+      {!hidden && <CartDropdown />}
     </div>
   );
 };
 
 const mapStateToProps: MapStateToProps<StateProps, {}, RootState> = state => ({
-  currentUser: state.user.currentUser
+  currentUser: state.user.currentUser,
+  hidden: state.cart.hidden
 });
 
 export default connect(mapStateToProps)(Header);

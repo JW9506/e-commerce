@@ -1,7 +1,8 @@
 import { User, UserReducerAction } from "./action";
-export interface UserReducerState {
+import { DeepReadonly } from "utility-types";
+export type UserReducerState = DeepReadonly<{
   currentUser: User;
-}
+}>;
 
 const INITIAL_STATE: UserReducerState = {
   currentUser: null

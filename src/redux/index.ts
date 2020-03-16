@@ -1,14 +1,19 @@
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import logger from "redux-logger";
-import userReducer from "./user/reducer";
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-import { UserReducerState } from "./user/reducer";
+
+import userReducer, { UserReducerState } from "./user/reducer";
+import cartReducer, { CartState } from "./cart/reducer";
+
 export interface RootState {
-  user: UserReducerState
+  user: UserReducerState;
+  cart: CartState;
 }
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export default createStore(
   combineReducers({
-    user: userReducer
+    user: userReducer,
+    cart: cartReducer
   }),
   composeEnhancers(applyMiddleware(logger))
 );
