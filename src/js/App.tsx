@@ -8,9 +8,9 @@ import {
   auth,
   firebaseUnsubscribeAuth,
   createUserProfileDocument
-} from "../firebase/utils";
+} from "$firebase/utils";
 import { connect, MapDispatchToProps } from "react-redux";
-import { setCurrentUserAction, User } from "../redux/user/action";
+import { setCurrentUserAction, User } from "$redux/user/action";
 import { PUBLIC_URL } from "Config";
 
 interface AppDispatchProps {

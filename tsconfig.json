@@ -9,14 +9,18 @@
     ],
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "allowJs": true,
-    "checkJs": true,
     "jsx": "preserve",
     "moduleResolution": "node",
     "isolatedModules": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "$firebase/*": ["src/firebase/*"],
+      "$redux": ["src/redux"],
+      "$redux/*": ["src/redux/*"]
+    },
     "forceConsistentCasingInFileNames": true
   },
   "include": [

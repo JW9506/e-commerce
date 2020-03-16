@@ -3,10 +3,10 @@ import { PUBLIC_URL } from "Config";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import "./index.scss";
-import { auth } from "../../../firebase/utils";
-import { User } from "../../../redux/user/action";
+import { auth } from "$firebase/utils";
+import { User } from "$redux/user/action";
 import { connect, MapStateToProps } from "react-redux";
-import { RootState } from "../../../redux";
+import { RootState } from "$redux";
 
 interface StateProps {
   currentUser: User;
@@ -41,11 +41,7 @@ const Header: React.FC<HeaderProps> = props => {
   );
 };
 
-const mapStateToProps: MapStateToProps<
-  StateProps,
-  {},
-  RootState
-> = state => ({
+const mapStateToProps: MapStateToProps<StateProps, {}, RootState> = state => ({
   currentUser: state.user.currentUser
 });
 
