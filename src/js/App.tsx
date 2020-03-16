@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import ShopPage from "./pages/ShopPage";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
@@ -9,14 +14,18 @@ import {
   firebaseUnsubscribeAuth,
   createUserProfileDocument
 } from "$firebase/utils";
-import { connect, MapDispatchToProps } from "react-redux";
+import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { setCurrentUserAction, User } from "$redux/user/action";
+import { RootState } from "$redux";
 import { PUBLIC_URL } from "Config";
 
 interface AppDispatchProps {
   setCurrentUser(user: User): void;
 }
-type AppProps = AppDispatchProps;
+interface AppStateProps {
+  currentUser: User;
+}
+type AppProps = AppDispatchProps & AppStateProps;
 
 class App extends React.Component<AppProps> {
   unsubscribeFromAuth: firebaseUnsubscribeAuth = null;
@@ -44,6 +53,7 @@ class App extends React.Component<AppProps> {
   }
 
   render() {
+    const { currentUser } = this.props;
     return (
       <Router>
         <Header />
@@ -55,13 +65,25 @@ class App extends React.Component<AppProps> {
             <ShopPage />
           </Route>
           <Route path={`${PUBLIC_URL}/signin`} exact>
-            <LoginNRegPage />
+            {currentUser ? (
+              <Redirect to={`${PUBLIC_URL}/`} />
+            ) : (
+              <LoginNRegPage />
+            )}
           </Route>
         </Switch>
       </Router>
     );
   }
 }
+
+const mapStateToProps: MapStateToProps<
+  AppStateProps,
+  {},
+  RootState
+> = state => ({
+  currentUser: state.user.currentUser
+});
 
 const mapDispatchToProps: MapDispatchToProps<
   AppDispatchProps,
@@ -72,4 +94,4 @@ const mapDispatchToProps: MapDispatchToProps<
   }
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
