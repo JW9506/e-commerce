@@ -91,7 +91,9 @@ module.exports = (_, { mode = "production" }) => {
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"],
       alias: {
-        Config: path.resolve(__dirname, "Config.js")
+        Config: path.resolve(__dirname, "Config.js"),
+        $firebase: path.resolve(__dirname, "src/firebase"),
+        $redux: path.resolve(__dirname, "src/redux")
       }
     },
     optimization: {
