@@ -2,16 +2,16 @@ import React from "react";
 import CollectionItem from "../CollectionItem";
 import { Item } from "$redux/cart/reducer";
 import "./index.scss";
-import { DeepReadonly } from "utility-types";
+import { $ElementType } from "utility-types";
+import { RootState } from "../../../redux/index";
 
 interface CollectionPreviewProps {
-  title: string;
-  items: DeepReadonly<Item[]>;
+  collection: $ElementType<RootState["shop"]["collections"], number>;
 }
 const CollectionPreview: React.FC<CollectionPreviewProps> = ({
-  title,
-  items
+  collection
 }) => {
+  const { title, items } = collection;
   return (
     <div className="collection-preview">
       <h1 className="title">{title}</h1>

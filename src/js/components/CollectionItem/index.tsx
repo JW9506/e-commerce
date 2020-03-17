@@ -3,8 +3,13 @@ import CustomButton from "../CustomButton";
 import { connect, MapDispatchToProps } from "react-redux";
 import { addItem } from "$redux/cart/action";
 import "./index.scss";
-import { Item } from "$redux/cart/reducer";
+import { RootState } from "$redux";
+import { $ElementType } from "utility-types";
 
+type Item = $ElementType<
+  $ElementType<RootState["shop"]["collections"], number>["items"],
+  number
+>;
 interface DispatchProps {
   addItem: (item: Item) => void;
 }
@@ -21,7 +26,9 @@ const CollectionItem: React.FC<CollectionItemProps> = ({ item, addItem }) => {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <CustomButton inverted onClick={() => addItem(item)}>add to cart</CustomButton>
+      <CustomButton inverted onClick={() => addItem(item)}>
+        add to cart
+      </CustomButton>
     </div>
   );
 };

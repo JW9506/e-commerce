@@ -39,262 +39,262 @@ interface ShopCategory {
   id: number;
   title: string;
   routeName: string;
-  items: Item[]
+  items: Item[];
 }
 export interface ShopState {
-  collections: ShopCategory[];
+  collections: { [title: string]: ShopCategory };
 }
 const INITIAL_STATE: ShopState = {
-  collections: [
-    {
+  collections: {
+    AAA: {
       id: 1,
       title: "AAA",
       routeName: "AAA",
       items: [
         {
           id: 1,
-          name: "A001",
+          name: "AAA001",
           imageUrl: AAA001,
           price: 25
         },
         {
           id: 2,
-          name: "A002",
+          name: "AAA002",
           imageUrl: AAA002,
           price: 18
         },
         {
           id: 3,
-          name: "A003",
+          name: "AAA003",
           imageUrl: AAA003,
           price: 35
         },
         {
           id: 4,
-          name: "A004",
+          name: "AAA004",
           imageUrl: AAA004,
           price: 25
         },
         {
           id: 5,
-          name: "A005",
+          name: "AAA005",
           imageUrl: AAA005,
           price: 18
         },
         {
           id: 6,
-          name: "A006",
+          name: "AAA006",
           imageUrl: AAA006,
           price: 14
         },
         {
           id: 7,
-          name: "A007",
+          name: "AAA007",
           imageUrl: AAA007,
           price: 18
         },
         {
           id: 8,
-          name: "A008",
+          name: "AAA008",
           imageUrl: AAA008,
           price: 14
         },
         {
           id: 9,
-          name: "A009",
+          name: "AAA009",
           imageUrl: AAA009,
           price: 16
         }
       ]
     },
-    {
+    BBB: {
       id: 2,
       title: "BBB",
       routeName: "BBB",
       items: [
         {
           id: 10,
-          name: "B001",
+          name: "BBB001",
           imageUrl: BBB001,
           price: 220
         },
         {
           id: 11,
-          name: "B002",
+          name: "BBB002",
           imageUrl: BBB002,
           price: 280
         },
         {
           id: 12,
-          name: "B003",
+          name: "BBB003",
           imageUrl: BBB003,
           price: 110
         },
         {
           id: 13,
-          name: "B004",
+          name: "BBB004",
           imageUrl: BBB004,
           price: 160
         },
         {
           id: 14,
-          name: "B005",
+          name: "BBB005",
           imageUrl: BBB005,
           price: 160
         },
         {
           id: 15,
-          name: "B006",
+          name: "BBB006",
           imageUrl: BBB006,
           price: 160
         },
         {
           id: 16,
-          name: "B007",
+          name: "BBB007",
           imageUrl: BBB007,
           price: 190
         },
         {
           id: 17,
-          name: "B008",
+          name: "BBB008",
           imageUrl: BBB008,
           price: 200
         }
       ]
     },
-    {
+    CCC: {
       id: 3,
       title: "CCC",
       routeName: "CCC",
       items: [
         {
           id: 18,
-          name: "C001",
+          name: "CCC001",
           imageUrl: CCC001,
           price: 125
         },
         {
           id: 19,
-          name: "C002",
+          name: "CCC002",
           imageUrl: CCC002,
           price: 90
         },
         {
           id: 20,
-          name: "C003",
+          name: "CCC003",
           imageUrl: CCC003,
           price: 90
         },
         {
           id: 21,
-          name: "C004",
+          name: "CCC004",
           imageUrl: CCC004,
           price: 165
         },
         {
           id: 22,
-          name: "C005",
+          name: "CCC005",
           imageUrl: CCC005,
           price: 185
         }
       ]
     },
-    {
+    DDD: {
       id: 4,
       title: "DDD",
       routeName: "DDD",
       items: [
         {
           id: 23,
-          name: "D001",
+          name: "DDD001",
           imageUrl: DDD001,
           price: 25
         },
         {
           id: 24,
-          name: "D002",
+          name: "DDD002",
           imageUrl: DDD002,
           price: 20
         },
         {
           id: 25,
-          name: "D003",
+          name: "DDD003",
           imageUrl: DDD003,
           price: 80
         },
         {
           id: 26,
-          name: "D004",
+          name: "DDD004",
           imageUrl: DDD004,
           price: 80
         },
         {
           id: 27,
-          name: "D005",
+          name: "DDD005",
           imageUrl: DDD005,
           price: 45
         },
         {
           id: 28,
-          name: "D006",
+          name: "DDD006",
           imageUrl: DDD006,
           price: 135
         },
         {
           id: 29,
-          name: "D007",
+          name: "DDD007",
           imageUrl: DDD007,
           price: 20
         }
       ]
     },
-    {
+    EEE: {
       id: 5,
       title: "EEE",
       routeName: "EEE",
       items: [
         {
           id: 30,
-          name: "E001",
+          name: "EEE001",
           imageUrl: EEE001,
           price: 325
         },
         {
           id: 31,
-          name: "E002",
+          name: "EEE002",
           imageUrl: EEE002,
           price: 20
         },
         {
           id: 32,
-          name: "E003",
+          name: "EEE003",
           imageUrl: EEE003,
           price: 25
         },
         {
           id: 33,
-          name: "E004",
+          name: "EEE004",
           imageUrl: EEE004,
           price: 25
         },
         {
           id: 34,
-          name: "E005",
+          name: "EEE005",
           imageUrl: EEE005,
           price: 40
         },
         {
           id: 35,
-          name: "E006",
+          name: "EEE006",
           imageUrl: EEE006,
           price: 25
         }
       ]
     }
-  ]
+  }
 };
 
-export default (state = INITIAL_STATE, action: { type: string } ) => {
+export default (state = INITIAL_STATE, action: { type: string }) => {
   switch (action.type) {
     default:
       return state;
