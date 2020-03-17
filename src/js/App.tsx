@@ -64,7 +64,7 @@ class App extends React.Component<AppProps> {
           <Route path={`${PUBLIC_URL}/`} exact>
             <HomePage />
           </Route>
-          <Route path={`${PUBLIC_URL}/shop`} exact>
+          <Route path={`${PUBLIC_URL}/shop`}>
             <ShopPage />
           </Route>
           <Route path={`${PUBLIC_URL}/checkout`}>
