@@ -3,12 +3,11 @@ import { connect, MapStateToProps } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCartTotal, selectCartItems } from "$redux/cart/selector";
 import "./index.scss";
-import { CartItem } from "$redux/cart/reducer";
 import { RootState } from "$redux";
 import CheckoutItem from "../../components/CheckoutItem/index";
 
 interface MapState {
-  cartItems: CartItem[];
+  cartItems: RootState["cart"]["cartItems"]
   cartTotal: number;
 }
 

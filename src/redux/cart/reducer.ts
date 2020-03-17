@@ -8,11 +8,9 @@ export interface Item {
   price: number;
 }
 
-export type CartItem = Readonly<
-  {
-    quantity: number;
-  } & Item
->;
+export type CartItem = {
+  quantity: number;
+} & Item;
 
 export type CartState = {
   hidden: boolean;

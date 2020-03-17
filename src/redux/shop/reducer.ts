@@ -35,7 +35,6 @@ import EEE005 from "../../imgs/EEE005.jpg";
 import EEE006 from "../../imgs/EEE006.jpg";
 
 import { Item } from "../cart/reducer";
-import { DeepReadonly } from "utility-types";
 interface ShopCategory {
   id: number;
   title: string;
@@ -43,7 +42,7 @@ interface ShopCategory {
   items: Item[]
 }
 export interface ShopState {
-  collections: DeepReadonly<ShopCategory[]>;
+  collections: ShopCategory[];
 }
 const INITIAL_STATE: ShopState = {
   collections: [

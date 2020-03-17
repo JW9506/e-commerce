@@ -2,12 +2,11 @@ import React from "react";
 import CollectionPreview from "../../components/CollectionPreview";
 import { connect, MapStateToProps } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { ShopState } from "$redux/shop/reducer";
 import { RootState } from "$redux";
 import { selectCollections } from "$redux/shop/selector";
 
 interface MapStateProps {
-  collections: ShopState["collections"];
+  collections: RootState["shop"]["collections"]
 }
 type ShopPageProps = MapStateProps;
 const ShopPage: React.FC<ShopPageProps> = ({ collections }) => {

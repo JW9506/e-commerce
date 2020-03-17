@@ -6,15 +6,15 @@ import EEE from "../../imgs/EEE.jpg";
 
 import { DirectoryAction } from "./action";
 
-export type DirectorySection = Readonly<{
+export type DirectorySection = {
   title: string;
   imageUrl: string;
   id: number;
   linkUrl: string;
   size?: "large";
-}>;
+};
 export interface DirectoryState {
-  sections: DirectorySection[]
+  sections: DirectorySection[];
 }
 
 const INITIAL_STATE: DirectoryState = {
