@@ -17,7 +17,9 @@ import {
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { setCurrentUserAction, User } from "$redux/user/action";
 import { RootState } from "$redux";
+import { createStructuredSelector } from "reselect";
 import { PUBLIC_URL } from "Config";
+import { selectCurrentUser } from "$redux/user/selector";
 
 interface AppDispatchProps {
   setCurrentUser(user: User): void;
@@ -81,8 +83,8 @@ const mapStateToProps: MapStateToProps<
   AppStateProps,
   {},
   RootState
-> = state => ({
-  currentUser: state.user.currentUser
+> = createStructuredSelector({
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps: MapDispatchToProps<
