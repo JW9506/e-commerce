@@ -5,15 +5,21 @@ import logger from "redux-logger";
 
 import userReducer, { UserReducerState } from "./user/reducer";
 import cartReducer, { CartState } from "./cart/reducer";
+import directoryReducer, { DirectoryState } from "./directory/reducer";
+import shopReducer, { ShopState } from "./shop/reducer";
 import { isProduction } from "Config";
 
 export interface RootState {
   user: UserReducerState;
   cart: CartState;
+  directory: DirectoryState;
+  shop: ShopState;
 }
 const rootReducer = combineReducers({
   user: userReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  directory: directoryReducer,
+  shop: shopReducer
 });
 
 const persistConnfig: PersistConfig<RootState> = {
