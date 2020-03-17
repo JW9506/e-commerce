@@ -1,9 +1,8 @@
 import { CartItem } from "./reducer";
-import { DeepReadonly } from "utility-types";
 import { Item } from "./reducer";
 
 export const addItemToCart = (
-  cartItems: DeepReadonly<CartItem[]>,
+  cartItems: CartItem[],
   cartItemToAdd: Item
 ): CartItem[] => {
   const existingCartItem = cartItems.find(

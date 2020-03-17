@@ -9,14 +9,16 @@ export interface Item {
   price: number;
 }
 
-export interface CartItem extends Item {
-  quantity: number;
-}
+export type CartItem = Readonly<
+  {
+    quantity: number;
+  } & Item
+>;
 
-export type CartState = DeepReadonly<{
+export type CartState = {
   hidden: boolean;
   cartItems: CartItem[];
-}>;
+};
 const INITIAL_STATE: CartState = {
   hidden: true,
   cartItems: []

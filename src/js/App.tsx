@@ -9,6 +9,7 @@ import ShopPage from "./pages/ShopPage";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
 import LoginNRegPage from "./pages/LoginNRegPage";
+import CheckoutPage from "./pages/CheckoutPage";
 import {
   auth,
   firebaseUnsubscribeAuth,
@@ -65,6 +66,9 @@ class App extends React.Component<AppProps> {
           </Route>
           <Route path={`${PUBLIC_URL}/shop`} exact>
             <ShopPage />
+          </Route>
+          <Route path={`${PUBLIC_URL}/checkout`}>
+            <CheckoutPage />
           </Route>
           <Route path={`${PUBLIC_URL}/signin`} exact>
             {currentUser ? (

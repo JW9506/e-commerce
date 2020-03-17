@@ -1,4 +1,4 @@
-// Todo: Purpose unclear, can't see fundamental difference
+// Todo: Purpose unclear, can't see fundamental performance difference
 import { createSelector } from "reselect";
 import { RootState } from "$redux";
 
@@ -17,4 +17,9 @@ export const selectCartItems = createSelector(
 export const selectCartItemsCount = createSelector(
   [selectCartItems],
   cartItems => cartItems.reduce((cnt, item) => cnt + item.quantity, 0)
+);
+
+export const selectCartTotal = createSelector(
+  [selectCartItems],
+  cartItems => cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
 );
