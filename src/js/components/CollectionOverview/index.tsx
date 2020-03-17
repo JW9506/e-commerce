@@ -4,17 +4,18 @@ import { connect, MapStateToProps } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { RootState } from "$redux";
 import "./index.scss";
-import { selectCollections } from "$redux/shop/selector";
+import { selectCollectionForPreview } from "$redux/shop/selector";
+import { $ElementType } from "utility-types";
 
 interface MapStateProps {
-  collections: RootState["shop"]["collections"];
+  collections: $ElementType<RootState["shop"]["collections"], string>[];
 }
 type CollectionOverview = MapStateProps;
 const CollectionOverview: React.FC<CollectionOverview> = ({ collections }) => {
   return (
     <div className="collection-overview">
-      {collections.map(collection => (
-        <CollectionPreview key={collection.id} collection={collection} />
+      {collections.map(c => (
+        <CollectionPreview key={c.id} collection={c} />
       ))}
     </div>
   );
@@ -25,7 +26,7 @@ const mapStateToProps: MapStateToProps<
   {},
   RootState
 > = createStructuredSelector({
-  collections: selectCollections
+  collections: selectCollectionForPreview
 });
 
 export default connect(mapStateToProps)(CollectionOverview);

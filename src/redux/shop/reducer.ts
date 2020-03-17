@@ -39,14 +39,14 @@ interface ShopCategory {
   id: number;
   title: string;
   routeName: string;
-  items: Item[]
+  items: Item[];
 }
 export interface ShopState {
-  collections: ShopCategory[];
+  collections: { [title: string]: ShopCategory };
 }
 const INITIAL_STATE: ShopState = {
-  collections: [
-    {
+  collections: {
+    AAA: {
       id: 1,
       title: "AAA",
       routeName: "AAA",
@@ -107,7 +107,7 @@ const INITIAL_STATE: ShopState = {
         }
       ]
     },
-    {
+    BBB: {
       id: 2,
       title: "BBB",
       routeName: "BBB",
@@ -162,7 +162,7 @@ const INITIAL_STATE: ShopState = {
         }
       ]
     },
-    {
+    CCC: {
       id: 3,
       title: "CCC",
       routeName: "CCC",
@@ -199,7 +199,7 @@ const INITIAL_STATE: ShopState = {
         }
       ]
     },
-    {
+    DDD: {
       id: 4,
       title: "DDD",
       routeName: "DDD",
@@ -248,7 +248,7 @@ const INITIAL_STATE: ShopState = {
         }
       ]
     },
-    {
+    EEE: {
       id: 5,
       title: "EEE",
       routeName: "EEE",
@@ -291,10 +291,10 @@ const INITIAL_STATE: ShopState = {
         }
       ]
     }
-  ]
+  }
 };
 
-export default (state = INITIAL_STATE, action: { type: string } ) => {
+export default (state = INITIAL_STATE, action: { type: string }) => {
   switch (action.type) {
     default:
       return state;

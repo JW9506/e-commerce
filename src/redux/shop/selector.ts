@@ -10,5 +10,10 @@ export const selectCollections = createSelector(
 
 export const selectCollection = (collectionUrlParam: string) =>
   createSelector(selectCollections, collections =>
-    collections.find(c => c.title === collectionUrlParam)
+    collections[collectionUrlParam]
   );
+
+export const selectCollectionForPreview = createSelector(
+  selectCollections,
+  collections => Object.keys(collections).map(key => collections[key])
+);
