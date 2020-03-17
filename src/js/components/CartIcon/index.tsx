@@ -1,23 +1,34 @@
 import React from "react";
 import { FaShoppingBag } from "react-icons/fa";
-import { connect, MapDispatchToProps } from "react-redux";
+import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 import { toggleCartHidden } from "$redux/cart/action";
+import { selectCartItemsCount } from "$redux/cart/selector";
 import "./index.scss";
+import { RootState } from "$redux";
 
 interface DispatchProps {
   toggleCartHidden: () => void;
 }
-type CartIconProps = DispatchProps;
+interface StateProps {
+  itemCount: number;
+}
+type CartIconProps = DispatchProps & StateProps;
 
-const CartIcon: React.FC<CartIconProps> = ({ toggleCartHidden }) => {
-  return <div className="cart-icon" onClick={toggleCartHidden}>
-    <FaShoppingBag />
-    <span className="item-count">0</span>
-  </div>;
+const CartIcon: React.FC<CartIconProps> = ({ toggleCartHidden, itemCount }) => {
+  return (
+    <div className="cart-icon" onClick={toggleCartHidden}>
+      <FaShoppingBag />
+      <span className="item-count">{itemCount}</span>
+    </div>
+  );
 };
 
-const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = (dispatch) => ({
+const mapStateToProps: MapStateToProps<StateProps, {}, RootState> = state => ({
+  itemCount: selectCartItemsCount(state)
+});
+
+const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = dispatch => ({
   toggleCartHidden: () => dispatch(toggleCartHidden())
 });
 
-export default connect(null, mapDispatchToProps)(CartIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

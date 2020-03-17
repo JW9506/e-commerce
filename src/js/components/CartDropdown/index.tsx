@@ -1,12 +1,32 @@
 import React from "react";
 import "./index.scss";
 import CustomButton from "../CustomButton";
+import CartItem from "../CartItem";
+import { CartItem as CartItemShape } from "$redux/cart/reducer";
+import { selectCartItems } from "$redux/cart/selector";
+import { connect, MapStateToProps } from "react-redux";
+import { RootState } from "$redux";
+import { DeepReadonly } from "utility-types";
 
-const CartDropdown: React.FC = props => {
-  return <div className="cart-dropdown">
-    <div className="cart-items" />
-    <CustomButton>GO TO CHECKOUT</CustomButton>
-  </div>;
+interface StateProps {
+  cartItems: DeepReadonly<CartItemShape[]>;
+}
+type CartDropdownProps = StateProps;
+const CartDropdown: React.FC<CartDropdownProps> = ({ cartItems }) => {
+  return (
+    <div className="cart-dropdown">
+      <div className="cart-items">
+        {cartItems.map(cartItem => (
+          <CartItem key={cartItem.id} item={cartItem} />
+        ))}
+      </div>
+      <CustomButton>GO TO CHECKOUT</CustomButton>
+    </div>
+  );
 };
 
-export default CartDropdown;
+const mapStateToProps: MapStateToProps<StateProps, {}, RootState> = state => ({
+  cartItems: selectCartItems(state)
+});
+
+export default connect(mapStateToProps)(CartDropdown);
