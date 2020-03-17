@@ -1,13 +1,8 @@
 import React from "react";
 import CollectionItem from "../CollectionItem";
+import { Item } from "$redux/cart/reducer";
 import "./index.scss";
 
-export interface Item {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-}
 interface CollectionPreviewProps {
   title: string;
   items: Item[];
@@ -23,7 +18,7 @@ const CollectionPreview: React.FC<CollectionPreviewProps> = ({
         {items
           .filter((_, idx) => idx < 4)
           .map(item => (
-            <CollectionItem key={item.id} {...item} />
+            <CollectionItem key={item.id} item={item} />
           ))}
       </div>
     </div>
