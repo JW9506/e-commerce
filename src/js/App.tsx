@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
   Redirect
@@ -59,7 +58,7 @@ class App extends React.Component<AppProps> {
   render() {
     const { currentUser } = this.props;
     return (
-      <Router>
+      <>
         <Header />
         <Switch>
           <Route path={`${PUBLIC_URL}/`} exact>
@@ -79,7 +78,7 @@ class App extends React.Component<AppProps> {
             )}
           </Route>
         </Switch>
-      </Router>
+      </>
     );
   }
 }
