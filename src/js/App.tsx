@@ -16,7 +16,8 @@ import {
   createUserProfileDocument
 } from "$firebase/utils";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
-import { setCurrentUserAction, User } from "$redux/user/action";
+import { setCurrentUserAction } from "$redux/user/action";
+import { User } from "$redux/user/reducer";
 import { RootState } from "$redux";
 import { createStructuredSelector } from "reselect";
 import { PUBLIC_URL } from "Config";
