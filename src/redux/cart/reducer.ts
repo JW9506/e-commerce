@@ -1,6 +1,5 @@
 import { CartAction } from "./action";
-import { addItemToCart } from "./utils";
-import { DeepReadonly } from "utility-types";
+import { addItemToCart, removeItemFromCart } from "./utils";
 
 export interface Item {
   id: number;
@@ -35,6 +34,18 @@ export default (state = INITIAL_STATE, action: CartAction): CartState => {
       return {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload)
+      };
+    case "REMOVE_ITEM":
+      return {
+        ...state,
+        cartItems: removeItemFromCart(state.cartItems, action.payload)
+      };
+    case "CLEAR_ITEM_FROM_CART":
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(
+          cartItem => cartItem.id !== action.payload.id
+        )
       };
     default:
       return state;
