@@ -1,12 +1,17 @@
 import { CartAction } from "./action";
+import { addItemToCart } from "./utils";
 import { DeepReadonly } from "utility-types";
 
-export interface CartItem {
+export interface Item {
   id: number;
   name: string;
   imageUrl: string;
   price: number;
 }
+export interface CartItem extends Item {
+  quantity: number;
+}
+
 export type CartState = DeepReadonly<{
   hidden: boolean;
   cartItems: CartItem[];
@@ -26,7 +31,7 @@ export default (state = INITIAL_STATE, action: CartAction): CartState => {
     case "ADD_ITEM":
       return {
         ...state,
-        cartItems: [...state.cartItems, action.payload]
+        cartItems: addItemToCart(state.cartItems, action.payload)
       };
     default:
       return state;

@@ -2,12 +2,11 @@ import React from "react";
 import CustomButton from "../CustomButton";
 import { connect, MapDispatchToProps } from "react-redux";
 import { addItem } from "$redux/cart/action";
-import { CartItem } from "$redux/cart/reducer";
 import "./index.scss";
-import { Item } from "../CollectionPreview";
+import { Item } from "$redux/cart/reducer";
 
 interface DispatchProps {
-  addItem: (item: CartItem) => void;
+  addItem: (item: Item) => void;
 }
 interface OwnProps {
   item: Item;
