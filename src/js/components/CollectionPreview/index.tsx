@@ -2,10 +2,11 @@ import React from "react";
 import CollectionItem from "../CollectionItem";
 import { Item } from "$redux/cart/reducer";
 import "./index.scss";
+import { DeepReadonly } from "utility-types";
 
 interface CollectionPreviewProps {
   title: string;
-  items: Item[];
+  items: DeepReadonly<Item[]>;
 }
 const CollectionPreview: React.FC<CollectionPreviewProps> = ({
   title,
