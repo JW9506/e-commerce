@@ -41,55 +41,55 @@ export default [
     items: [
       {
         id: 1,
-        name: "001",
+        name: "A001",
         imageUrl: AAA001,
         price: 25
       },
       {
         id: 2,
-        name: "002",
+        name: "A002",
         imageUrl: AAA002,
         price: 18
       },
       {
         id: 3,
-        name: "003",
+        name: "A003",
         imageUrl: AAA003,
         price: 35
       },
       {
         id: 4,
-        name: "004",
+        name: "A004",
         imageUrl: AAA004,
         price: 25
       },
       {
         id: 5,
-        name: "005",
+        name: "A005",
         imageUrl: AAA005,
         price: 18
       },
       {
         id: 6,
-        name: "006",
+        name: "A006",
         imageUrl: AAA006,
         price: 14
       },
       {
         id: 7,
-        name: "007",
+        name: "A007",
         imageUrl: AAA007,
         price: 18
       },
       {
         id: 8,
-        name: "008",
+        name: "A008",
         imageUrl: AAA008,
         price: 14
       },
       {
         id: 9,
-        name: "009",
+        name: "A009",
         imageUrl: AAA009,
         price: 16
       }
@@ -102,49 +102,49 @@ export default [
     items: [
       {
         id: 10,
-        name: "001",
+        name: "B001",
         imageUrl: BBB001,
         price: 220
       },
       {
         id: 11,
-        name: "002",
+        name: "B002",
         imageUrl: BBB002,
         price: 280
       },
       {
         id: 12,
-        name: "003",
+        name: "B003",
         imageUrl: BBB003,
         price: 110
       },
       {
         id: 13,
-        name: "004",
+        name: "B004",
         imageUrl: BBB004,
         price: 160
       },
       {
         id: 14,
-        name: "005",
+        name: "B005",
         imageUrl: BBB005,
         price: 160
       },
       {
         id: 15,
-        name: "006",
+        name: "B006",
         imageUrl: BBB006,
         price: 160
       },
       {
         id: 16,
-        name: "007",
+        name: "B007",
         imageUrl: BBB007,
         price: 190
       },
       {
         id: 17,
-        name: "008",
+        name: "B008",
         imageUrl: BBB008,
         price: 200
       }
@@ -157,31 +157,31 @@ export default [
     items: [
       {
         id: 18,
-        name: "001",
+        name: "C001",
         imageUrl: CCC001,
         price: 125
       },
       {
         id: 19,
-        name: "002",
+        name: "C002",
         imageUrl: CCC002,
         price: 90
       },
       {
         id: 20,
-        name: "003",
+        name: "C003",
         imageUrl: CCC003,
         price: 90
       },
       {
         id: 21,
-        name: "004",
+        name: "C004",
         imageUrl: CCC004,
         price: 165
       },
       {
         id: 22,
-        name: "005",
+        name: "C005",
         imageUrl: CCC005,
         price: 185
       }
@@ -194,43 +194,43 @@ export default [
     items: [
       {
         id: 23,
-        name: "001",
+        name: "D001",
         imageUrl: DDD001,
         price: 25
       },
       {
         id: 24,
-        name: "002",
+        name: "D002",
         imageUrl: DDD002,
         price: 20
       },
       {
         id: 25,
-        name: "003",
+        name: "D003",
         imageUrl: DDD003,
         price: 80
       },
       {
         id: 26,
-        name: "004",
+        name: "D004",
         imageUrl: DDD004,
         price: 80
       },
       {
         id: 27,
-        name: "005",
+        name: "D005",
         imageUrl: DDD005,
         price: 45
       },
       {
         id: 28,
-        name: "006",
+        name: "D006",
         imageUrl: DDD006,
         price: 135
       },
       {
         id: 29,
-        name: "007",
+        name: "D007",
         imageUrl: DDD007,
         price: 20
       }
@@ -243,37 +243,37 @@ export default [
     items: [
       {
         id: 30,
-        name: "001",
+        name: "E001",
         imageUrl: EEE001,
         price: 325
       },
       {
         id: 31,
-        name: "002",
+        name: "E002",
         imageUrl: EEE002,
         price: 20
       },
       {
         id: 32,
-        name: "003",
+        name: "E003",
         imageUrl: EEE003,
         price: 25
       },
       {
         id: 33,
-        name: "004",
+        name: "E004",
         imageUrl: EEE004,
         price: 25
       },
       {
         id: 34,
-        name: "005",
+        name: "E005",
         imageUrl: EEE005,
         price: 40
       },
       {
         id: 35,
-        name: "006",
+        name: "E006",
         imageUrl: EEE006,
         price: 25
       }
