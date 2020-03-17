@@ -1,10 +1,9 @@
 import React from "react";
 import { CartItem as CartItemShape } from "$redux/cart/reducer";
 import "./index.scss";
-import { DeepReadonly } from "utility-types";
 
 interface CartItemProps {
-  item: DeepReadonly<CartItemShape>;
+  item: CartItemShape;
 }
 const CartItem: React.FC<CartItemProps> = ({
   item: { imageUrl, price, name, quantity }

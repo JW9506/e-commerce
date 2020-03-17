@@ -9,6 +9,7 @@ import ShopPage from "./pages/ShopPage";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
 import LoginNRegPage from "./pages/LoginNRegPage";
+import CheckoutPage from "./pages/CheckoutPage";
 import {
   auth,
   firebaseUnsubscribeAuth,
@@ -17,7 +18,9 @@ import {
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { setCurrentUserAction, User } from "$redux/user/action";
 import { RootState } from "$redux";
+import { createStructuredSelector } from "reselect";
 import { PUBLIC_URL } from "Config";
+import { selectCurrentUser } from "$redux/user/selector";
 
 interface AppDispatchProps {
   setCurrentUser(user: User): void;
@@ -64,6 +67,9 @@ class App extends React.Component<AppProps> {
           <Route path={`${PUBLIC_URL}/shop`} exact>
             <ShopPage />
           </Route>
+          <Route path={`${PUBLIC_URL}/checkout`}>
+            <CheckoutPage />
+          </Route>
           <Route path={`${PUBLIC_URL}/signin`} exact>
             {currentUser ? (
               <Redirect to={`${PUBLIC_URL}/`} />
@@ -81,8 +87,8 @@ const mapStateToProps: MapStateToProps<
   AppStateProps,
   {},
   RootState
-> = state => ({
-  currentUser: state.user.currentUser
+> = createStructuredSelector({
+  currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps: MapDispatchToProps<
