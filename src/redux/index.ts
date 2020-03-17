@@ -8,13 +8,15 @@ import cartReducer, { CartState } from "./cart/reducer";
 import directoryReducer, { DirectoryState } from "./directory/reducer";
 import shopReducer, { ShopState } from "./shop/reducer";
 import { isProduction } from "Config";
+import { DeepReadonly } from "utility-types";
 
-export interface RootState {
+type PersistState = {
   user: UserReducerState;
   cart: CartState;
   directory: DirectoryState;
   shop: ShopState;
-}
+};
+export type RootState = DeepReadonly<PersistState>;
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
@@ -22,7 +24,7 @@ const rootReducer = combineReducers({
   shop: shopReducer
 });
 
-const persistConnfig: PersistConfig<RootState> = {
+const persistConnfig: PersistConfig<PersistState> = {
   key: "root",
   storage: localStorage,
   whitelist: ["cart"]

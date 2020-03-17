@@ -1,10 +1,10 @@
 import { UserReducerAction } from "./action";
-export type User = Readonly<{
+export type User = {
   id: string;
   createdAt: string;
   email: string;
   displayName: string;
-}> | null;
+} | null;
 export type UserReducerState = {
   currentUser: User;
 };
