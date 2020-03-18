@@ -5,6 +5,7 @@ import { selectCartTotal, selectCartItems } from "$redux/cart/selector";
 import "./index.scss";
 import { RootState } from "$redux";
 import CheckoutItem from "../../components/CheckoutItem/index";
+import StripeCheckoutButton from "../../components/StripeCheckoutButton";
 
 interface MapState {
   cartItems: RootState["cart"]["cartItems"]
@@ -42,6 +43,10 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
       <div className="total">
         <span>TOTAL: ${cartTotal}</span>
       </div>
+      <div className="test-warning">
+        *Use 4242 4242 4242 4242 with any EXP any CVC code to test
+      </div>
+      <StripeCheckoutButton price={cartTotal}/>
     </div>
   );
 };
