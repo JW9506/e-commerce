@@ -3,8 +3,8 @@ import "./index.scss";
 import { connect, MapDispatchToProps } from "react-redux";
 import { CartItem } from "$redux/cart/reducer";
 import { clearItemFromCart } from "$redux/cart/action";
-import { Item } from "$redux/cart/reducer";
 import { addItem, removeItem } from "$redux/cart/action";
+import { Item } from "$redux/shop/reducer";
 
 interface DispatchProps {
   clearItemFromCart: (item: Item) => void;

@@ -1,10 +1,11 @@
 import { CartItem } from "./reducer";
-import { Item } from "./reducer";
+import { DeepReadonly } from "utility-types";
+import { Item } from "../shop/reducer";
 
 export const addItemToCart = (
-  cartItems: CartItem[],
+  cartItems: DeepReadonly<CartItem[]>,
   cartItemToAdd: Item
-): CartItem[] => {
+): DeepReadonly<CartItem[]> => {
   const existingCartItem = cartItems.find(
     cartItem => cartItem.id === cartItemToAdd.id
   );
@@ -19,9 +20,9 @@ export const addItemToCart = (
 };
 
 export const removeItemFromCart = (
-  cartItems: CartItem[],
+  cartItems: DeepReadonly<CartItem[]>,
   cartItemToRemove: Item
-): CartItem[] => {
+): DeepReadonly<CartItem[]> => {
   const existingCartItem = cartItems.find(
     cartItem => cartItem.id === cartItemToRemove.id
   );

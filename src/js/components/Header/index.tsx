@@ -13,11 +13,11 @@ import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "$redux/user/selector";
 import { selectCartHidden } from "$redux/cart/selector";
 
-interface StateProps {
+interface MapStateProps {
   currentUser: User;
   hidden: boolean;
 }
-type HeaderProps = StateProps;
+type HeaderProps = MapStateProps;
 
 const Header: React.FC<HeaderProps> = props => {
   const { currentUser, hidden } = props;
@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = props => {
 };
 
 const mapStateToProps: MapStateToProps<
-  StateProps,
+  MapStateProps,
   {},
   RootState
 > = createStructuredSelector({

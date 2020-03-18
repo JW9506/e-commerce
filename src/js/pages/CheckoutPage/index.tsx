@@ -1,14 +1,18 @@
 import React from "react";
 import { connect, MapStateToProps } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCartTotal, selectCartItems } from "$redux/cart/selector";
+import {
+  selectCartTotal,
+  selectCartItems,
+  selectCartItemsShape
+} from "$redux/cart/selector";
 import "./index.scss";
 import { RootState } from "$redux";
 import CheckoutItem from "../../components/CheckoutItem/index";
 import StripeCheckoutButton from "../../components/StripeCheckoutButton";
 
 interface MapState {
-  cartItems: RootState["cart"]["cartItems"]
+  cartItems: selectCartItemsShape;
   cartTotal: number;
 }
 
@@ -46,7 +50,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({
       <div className="test-warning">
         *Use 4242 4242 4242 4242 with any EXP any CVC code to test
       </div>
-      <StripeCheckoutButton price={cartTotal}/>
+      <StripeCheckoutButton price={cartTotal} />
     </div>
   );
 };

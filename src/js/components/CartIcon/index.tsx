@@ -6,13 +6,13 @@ import { selectCartItemsCount } from "$redux/cart/selector";
 import "./index.scss";
 import { RootState } from "$redux";
 
-interface DispatchProps {
+interface MapDispatchProps {
   toggleCartHidden: () => void;
 }
-interface StateProps {
+interface MapStateProps {
   itemCount: number;
 }
-type CartIconProps = DispatchProps & StateProps;
+type CartIconProps = MapDispatchProps & MapStateProps;
 
 const CartIcon: React.FC<CartIconProps> = ({ toggleCartHidden, itemCount }) => {
   return (
@@ -23,11 +23,11 @@ const CartIcon: React.FC<CartIconProps> = ({ toggleCartHidden, itemCount }) => {
   );
 };
 
-const mapStateToProps: MapStateToProps<StateProps, {}, RootState> = state => ({
+const mapStateToProps: MapStateToProps<MapStateProps, {}, RootState> = state => ({
   itemCount: selectCartItemsCount(state)
 });
 
-const mapDispatchToProps: MapDispatchToProps<DispatchProps, {}> = dispatch => ({
+const mapDispatchToProps: MapDispatchToProps<MapDispatchProps, {}> = dispatch => ({
   toggleCartHidden: () => dispatch(toggleCartHidden())
 });
 

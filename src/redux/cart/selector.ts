@@ -1,6 +1,8 @@
 // Todo: Purpose unclear, can't see fundamental performance difference
 import { createSelector } from "reselect";
 import { RootState } from "$redux";
+import { DeepReadonly } from "utility-types";
+import { CartItem } from "$redux/cart/reducer";
 
 const selectCart = (state: RootState) => state.cart;
 
@@ -13,6 +15,7 @@ export const selectCartItems = createSelector(
   [selectCart],
   cart => cart.cartItems
 );
+export type selectCartItemsShape = DeepReadonly<CartItem[]>;
 
 export const selectCartItemsCount = createSelector(
   [selectCartItems],

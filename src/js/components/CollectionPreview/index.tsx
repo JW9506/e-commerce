@@ -1,12 +1,11 @@
 import React from "react";
 import CollectionItem from "../CollectionItem";
-import { Item } from "$redux/cart/reducer";
 import "./index.scss";
-import { $ElementType } from "utility-types";
-import { RootState } from "../../../redux/index";
+import { ShopCategoryShape } from "$redux/shop/reducer";
+import { DeepReadonly } from "utility-types";
 
 interface CollectionPreviewProps {
-  collection: $ElementType<RootState["shop"]["collections"], number>;
+  collection: DeepReadonly<ShopCategoryShape>;
 }
 const CollectionPreview: React.FC<CollectionPreviewProps> = ({
   collection

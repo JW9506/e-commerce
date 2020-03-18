@@ -1,4 +1,5 @@
-import { Item } from "./reducer";
+import { CartState } from "./reducer";
+import { Item } from "../shop/reducer";
 
 const TOGGLE_CART_HIDDEN = "TOGGLE_CART_HIDDEN";
 const ADD_ITEM = "ADD_ITEM";
