@@ -22,4 +22,5 @@ declare module "Config" {
   export const PUBLIC_URL: string;
   export const TITLE: string;
   export const firebaseConfig: any;
+  export const StripePublishableKey: string;
 }
