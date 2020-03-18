@@ -1,13 +1,14 @@
 import { UserReducerAction } from "./action";
+import { DeepReadonly } from "utility-types";
 export type User = {
   id: string;
   createdAt: string;
   email: string;
   displayName: string;
 } | null;
-export type UserReducerState = {
+export type UserReducerState = DeepReadonly<{
   currentUser: User;
-};
+}>;
 
 const INITIAL_STATE: UserReducerState = {
   currentUser: null

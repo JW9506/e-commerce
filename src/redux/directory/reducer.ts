@@ -1,4 +1,5 @@
 import { DirectoryAction } from "./action";
+import { DeepReadonly } from "utility-types";
 
 export type DirectorySection = {
   title: string;
@@ -7,9 +8,9 @@ export type DirectorySection = {
   linkUrl: string;
   size?: "large";
 };
-export interface DirectoryState {
+export type DirectoryState = DeepReadonly<{
   sections: DirectorySection[];
-}
+}>;
 
 const INITIAL_STATE: DirectoryState = {
   sections: [

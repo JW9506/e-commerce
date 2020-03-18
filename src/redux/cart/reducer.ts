@@ -1,21 +1,17 @@
 import { CartAction } from "./action";
 import { addItemToCart, removeItemFromCart } from "./utils";
+import { DeepReadonly } from "utility-types";
+import { Item } from "../shop/reducer";
 
-export interface Item {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-}
 
 export type CartItem = {
   quantity: number;
 } & Item;
 
-export type CartState = {
+export type CartState = DeepReadonly<{
   hidden: boolean;
   cartItems: CartItem[];
-};
+}>;
 const INITIAL_STATE: CartState = {
   hidden: true,
   cartItems: []

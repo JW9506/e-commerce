@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import { firebaseConfig } from "Config";
-
+import { $ElementType } from "utility-types";
 export type firebaseUnsubscribeAuth = firebase.Unsubscribe | null;
 
 firebase.initializeApp(firebaseConfig);
@@ -35,4 +35,31 @@ export async function createUserProfileDocument(
   }
   return userRef;
 }
+
+export function loadShopDataFromSnapshotToObj() {
+  return new Promise((resolve, reject) => {
+    const collectionsRef = firestore.collection("collections");
+    collectionsRef.onSnapshot(snapshot => {
+      const transformedCollections = snapshot.docs.map(docSnapshot => {
+        const { title, items } = docSnapshot.data() as {
+          title: string;
+          items: any[];
+        };
+        return {
+          routeName: encodeURI(title.toLowerCase()),
+          id: docSnapshot.id,
+          title,
+          items
+        };
+      });
+      const ret = transformedCollections.reduce((prev, c) => {
+        prev[c.title] = c;
+        return prev;
+      }, {} as { [field: string]: $ElementType<typeof transformedCollections, number> });
+
+      resolve(ret);
+    });
+  });
+}
+
 export default firebase;

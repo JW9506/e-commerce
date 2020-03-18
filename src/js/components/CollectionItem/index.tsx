@@ -3,18 +3,14 @@ import CustomButton from "../CustomButton";
 import { connect, MapDispatchToProps } from "react-redux";
 import { addItem } from "$redux/cart/action";
 import "./index.scss";
-import { RootState } from "$redux";
-import { $ElementType } from "utility-types";
+import { Item } from "$redux/shop/reducer";
 
-type Item = $ElementType<
-  $ElementType<RootState["shop"]["collections"], number>["items"],
-  number
->;
+type ReadonlyItem = Readonly<Item>;
 interface DispatchProps {
-  addItem: (item: Item) => void;
+  addItem: (item: ReadonlyItem) => void;
 }
 interface OwnProps {
-  item: Item;
+  item: ReadonlyItem;
 }
 export type CollectionItemProps = DispatchProps & OwnProps;
 const CollectionItem: React.FC<CollectionItemProps> = ({ item, addItem }) => {

@@ -4,11 +4,10 @@ import { connect, MapStateToProps } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { RootState } from "$redux";
 import "./index.scss";
-import { selectCollectionForPreview } from "$redux/shop/selector";
-import { $ElementType } from "utility-types";
+import { selectCollectionForPreview, selectCollectionForPreviewShape } from "$redux/shop/selector";
 
 interface MapStateProps {
-  collections: $ElementType<RootState["shop"]["collections"], string>[];
+  collections: selectCollectionForPreviewShape;
 }
 type CollectionOverview = MapStateProps;
 const CollectionOverview: React.FC<CollectionOverview> = ({ collections }) => {

@@ -1,17 +1,16 @@
 import React from "react";
 import CollectionItem from "../../components/CollectionItem";
 import { connect, MapStateToProps } from "react-redux";
-import { selectCollection } from "$redux/shop/selector";
+import { selectCollection, selectCollectionShape } from "$redux/shop/selector";
 import { useRouteMatch } from "react-router-dom";
 import { ShopPageRouteParam } from "../ShopPage";
 import { RootState } from "$redux";
-import { $ElementType } from "utility-types";
 import "./index.scss";
 
 interface MapStateProps {
   getCollection: (
     collectionUrlParam: string
-  ) => $ElementType<RootState["shop"]["collections"], number> | undefined;
+  ) => selectCollectionShape;
 }
 type CollectionPageProps = MapStateProps;
 const CollectionPage: React.FC<CollectionPageProps> = ({ getCollection }) => {

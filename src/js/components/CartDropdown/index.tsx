@@ -2,7 +2,7 @@ import React from "react";
 import "./index.scss";
 import CustomButton from "../CustomButton";
 import CartItem from "../CartItem";
-import { selectCartItems } from "$redux/cart/selector";
+import { selectCartItems, selectCartItemsShape } from "$redux/cart/selector";
 import { createStructuredSelector } from "reselect";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { RootState } from "$redux";
@@ -11,7 +11,7 @@ import { PUBLIC_URL } from "Config";
 import { toggleCartHidden } from "$redux/cart/action";
 
 interface StateProps {
-  cartItems: RootState["cart"]["cartItems"]
+  cartItems: selectCartItemsShape;
 }
 interface DispatchProps {
   toggleHidden: () => void;
