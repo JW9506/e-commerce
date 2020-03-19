@@ -1,60 +1,31 @@
 import React from "react";
-import {
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import ShopPage from "./pages/ShopPage";
 import HomePage from "./pages/HomePage";
 import Header from "./components/Header";
 import LoginNRegPage from "./pages/LoginNRegPage";
 import CheckoutPage from "./pages/CheckoutPage";
-import {
-  auth,
-  firebaseUnsubscribeAuth,
-  createUserProfileDocument
-} from "$firebase/utils";
 import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
-import { setCurrentUserAction } from "$redux/user/action";
 import { User } from "$redux/user/reducer";
 import { RootState } from "$redux";
 import { createStructuredSelector } from "reselect";
 import { PUBLIC_URL } from "Config";
 import { selectCurrentUser } from "$redux/user/selector";
+import { checkUserSession } from "$redux/user/action";
 
-interface AppDispatchProps {
-  setCurrentUser(user: User): void;
-}
-interface AppStateProps {
+interface MapStateProps {
   currentUser: User;
 }
-type AppProps = AppDispatchProps & AppStateProps;
+interface MapDispatchProps {
+  checkUserSession: () => void;
+}
+type AppProps = MapStateProps & MapDispatchProps;
 
 class App extends React.Component<AppProps> {
-  unsubscribeFromAuth: firebaseUnsubscribeAuth = null;
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-      if (!user) return setCurrentUser(user);
-      const userRef = await createUserProfileDocument(user);
-      if (userRef) {
-        userRef.onSnapshot(snapshot => {
-          const data = snapshot.data();
-          if (data && data.displayName) {
-            setCurrentUser({
-              id: snapshot.id,
-              ...data
-            } as User);
-          }
-        });
-      }
-    });
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
-  componentWillUnmount() {
-    if (this.unsubscribeFromAuth) this.unsubscribeFromAuth();
-  }
-
   render() {
     const { currentUser } = this.props;
     return (
@@ -84,20 +55,18 @@ class App extends React.Component<AppProps> {
 }
 
 const mapStateToProps: MapStateToProps<
-  AppStateProps,
+  MapStateProps,
   {},
   RootState
 > = createStructuredSelector({
   currentUser: selectCurrentUser
 });
 
-const mapDispatchToProps: MapDispatchToProps<
-  AppDispatchProps,
+const MapDispatchToProps: MapDispatchToProps<
+  MapDispatchProps,
   {}
 > = dispatch => ({
-  setCurrentUser(user: User) {
-    dispatch(setCurrentUserAction(user));
-  }
+  checkUserSession: () => dispatch(checkUserSession())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, MapDispatchToProps)(App);
