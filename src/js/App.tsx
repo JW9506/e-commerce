@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import ShopPage from "./pages/ShopPage";
 import HomePage from "./pages/HomePage";
@@ -21,39 +21,30 @@ interface MapDispatchProps {
 }
 type AppProps = MapStateProps & MapDispatchProps;
 
-class App extends React.Component<AppProps> {
-  componentDidMount() {
-    const { checkUserSession } = this.props;
+const App: React.FC<AppProps> = ({ currentUser, checkUserSession }) => {
+  useEffect(() => {
     checkUserSession();
-  }
-  render() {
-    const { currentUser } = this.props;
-    return (
-      <>
-        <Header />
-        <Switch>
-          <Route path={`${PUBLIC_URL}/`} exact>
-            <HomePage />
-          </Route>
-          <Route path={`${PUBLIC_URL}/shop`}>
-            <ShopPage />
-          </Route>
-          <Route path={`${PUBLIC_URL}/checkout`}>
-            <CheckoutPage />
-          </Route>
-          <Route path={`${PUBLIC_URL}/signin`} exact>
-            {currentUser ? (
-              <Redirect to={`${PUBLIC_URL}/`} />
-            ) : (
-              <LoginNRegPage />
-            )}
-          </Route>
-        </Switch>
-      </>
-    );
-  }
-}
-
+  }, [checkUserSession]);
+  return (
+    <>
+      <Header />
+      <Switch>
+        <Route path={`${PUBLIC_URL}/`} exact>
+          <HomePage />
+        </Route>
+        <Route path={`${PUBLIC_URL}/shop`}>
+          <ShopPage />
+        </Route>
+        <Route path={`${PUBLIC_URL}/checkout`}>
+          <CheckoutPage />
+        </Route>
+        <Route path={`${PUBLIC_URL}/signin`} exact>
+          {currentUser ? <Redirect to={`${PUBLIC_URL}/`} /> : <LoginNRegPage />}
+        </Route>
+      </Switch>
+    </>
+  );
+};
 const mapStateToProps: MapStateToProps<
   MapStateProps,
   {},

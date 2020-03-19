@@ -3,7 +3,6 @@ import { PUBLIC_URL } from "Config";
 import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import "./index.scss";
-import { auth } from "$firebase/utils";
 import { User } from "$redux/user/reducer";
 import CartIcon from "../CartIcon";
 import CartDropdown from "../CartDropdown";
