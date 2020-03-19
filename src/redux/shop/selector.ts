@@ -21,3 +21,8 @@ export const selectCollectionForPreview = createSelector(
   collections => Object.keys(collections).map(key => collections[key])
 );
 export type selectCollectionForPreviewShape = DeepReadonly<ShopCategoryShape>[];
+
+export const selectIsCollectionFetching = createSelector(
+  selectShop,
+  shop => shop.isFetching
+);
