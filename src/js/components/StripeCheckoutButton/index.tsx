@@ -8,7 +8,6 @@ interface StripeCheckoutButton {
 const StripeCheckoutButton: React.FC<StripeCheckoutButton> = ({ price }) => {
   const priceForStripe = price * 100;
   const onToken = (token: Token) => {
-    console.log(token);
     alert("Payment Successful");
   };
   return (
