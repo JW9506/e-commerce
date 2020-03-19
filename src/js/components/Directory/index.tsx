@@ -6,10 +6,10 @@ import "./index.scss";
 import { RootState } from "$redux";
 import { selectDirectorySections, selectDirectorySectionsShape } from "$redux/directory/selector";
 
-interface MapState {
+interface MapStateProps {
   sections: selectDirectorySectionsShape;
 }
-type DirectoryProps = MapState;
+type DirectoryProps = MapStateProps;
 const Directory: React.FC<DirectoryProps> = ({ sections }) => {
   return (
     <div className="directory-menu">
@@ -21,7 +21,7 @@ const Directory: React.FC<DirectoryProps> = ({ sections }) => {
 };
 
 const mapStateToProps: MapStateToProps<
-  MapState,
+  MapStateProps,
   {},
   RootState
 > = createStructuredSelector({

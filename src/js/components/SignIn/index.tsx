@@ -2,27 +2,32 @@ import React from "react";
 import "./index.scss";
 import FormInput from "../FormInput/index";
 import CustomButton from "../CustomButton/index";
-import { signInWithGoogle, auth } from "../../../firebase/utils";
+import { connect, MapDispatchToProps } from "react-redux";
+import {
+  googleSignInStart,
+  emailSignInStart
+} from "$redux/user/action";
 
 interface SignInState {
   email: string;
   password: string;
   [name: string]: string;
 }
-class SignIn extends React.Component<{}, SignInState> {
+interface MapDispatchProps {
+  googleSignInStart: () => void;
+  emailSignInStart: (email: string, password: string) => void;
+}
+type SignInProps = MapDispatchProps;
+class SignIn extends React.Component<SignInProps, SignInState> {
   state: SignInState = {
     email: "",
     password: ""
   };
   handleSubmit: React.FormEventHandler = async e => {
     e.preventDefault();
+    const { emailSignInStart } = this.props;
     const { email, password } = this.state;
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      this.setState({ email: "", password: "" });
-    } catch (error) {
-      console.error(new Error(`${error.code}: ${error.message}`));
-    }
+    emailSignInStart(email, password);
   };
   handleChange: React.ChangeEventHandler<HTMLInputElement> = e => {
     const { name, value } = e.target;
@@ -30,6 +35,7 @@ class SignIn extends React.Component<{}, SignInState> {
   };
   render() {
     const { email, password } = this.state;
+    const { googleSignInStart } = this.props;
     return (
       <div className="sign-in">
         <h2 className="title">I already have an account</h2>
@@ -55,7 +61,11 @@ class SignIn extends React.Component<{}, SignInState> {
           />
           <div className="buttons">
             <CustomButton type="submit">sign in</CustomButton>
-            <CustomButton type="button" onClick={signInWithGoogle} isGoogleSignIn>
+            <CustomButton
+              type="button"
+              onClick={googleSignInStart}
+              isGoogleSignIn
+            >
               sign in with google
             </CustomButton>
           </div>
@@ -64,4 +74,14 @@ class SignIn extends React.Component<{}, SignInState> {
     );
   }
 }
-export default SignIn;
+
+const mapDispatchToProps: MapDispatchToProps<
+  MapDispatchProps,
+  {}
+> = dispatch => ({
+  googleSignInStart: () => dispatch(googleSignInStart()),
+  emailSignInStart: (email: string, password: string) =>
+    dispatch(emailSignInStart({ email, password }))
+});
+
+export default connect(null, mapDispatchToProps)(SignIn);
