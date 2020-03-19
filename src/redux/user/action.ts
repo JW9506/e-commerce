@@ -9,10 +9,21 @@ export const CHECK_USER_SESSION = "CHECK_USER_SESSION";
 export const SIGN_OUT_START = "SIGN_OUT_START";
 export const SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS";
 export const SIGN_OUT_FAILURE = "SIGN_OUT_FAILURE";
+export const SIGN_UP_START = "SIGN_UP_START";
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
 
 interface EmailAndPassword {
   email: string;
   password: string;
+}
+
+export interface UserCredentials {
+  displayName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  [field: string]: string;
 }
 
 export interface GoogleSignInStartAction {
@@ -51,6 +62,21 @@ export interface SignOutFailureAction {
   payload: Error;
 }
 
+export interface SignUpStartAction {
+  type: typeof SIGN_UP_START;
+  payload: UserCredentials;
+}
+
+export interface SignUpSuccessAction {
+  type: typeof SIGN_UP_SUCCESS;
+  payload: { user: firebase.User; additionalData?: any };
+}
+
+export interface SignUpFailureAction {
+  type: typeof SIGN_UP_FAILURE;
+  payload: Error;
+}
+
 export type UserAction =
   | GoogleSignInStartAction
   | SignInSuccessAction
@@ -59,7 +85,10 @@ export type UserAction =
   | CheckUserSessionAction
   | SignOutSuccessAction
   | SignOutFailureAction
-  | SignOutStartAction;
+  | SignOutStartAction
+  | SignUpStartAction
+  | SignUpSuccessAction
+  | SignUpFailureAction;
 
 export const googleSignInStart = (): UserAction => ({
   type: "GOOGLE_SIGN_IN_START"
@@ -96,5 +125,25 @@ export const signOutSuccess = (): UserAction => ({
 
 export const signOutFailure = (error: Error): UserAction => ({
   type: "SIGN_OUT_FAILURE",
+  payload: error
+});
+
+export const signUpStart = (
+  signUpCredentials: UserCredentials
+): UserAction => ({
+  type: "SIGN_UP_START",
+  payload: signUpCredentials
+});
+
+export const signUpSuccess = (
+  user: firebase.User,
+  additionalData?: { [field: string]: string }
+): UserAction => ({
+  type: "SIGN_UP_SUCCESS",
+  payload: { user, additionalData }
+});
+
+export const signUpFailure = (error: Error): UserAction => ({
+  type: "SIGN_UP_FAILURE",
   payload: error
 });

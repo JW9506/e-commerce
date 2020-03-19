@@ -35,6 +35,7 @@ export default (
       };
     case "SIGN_OUT_FAILURE":
     case "SIGN_IN_FAILURE":
+    case "SIGN_UP_FAILURE":
       return {
         ...state,
         error: action.payload
