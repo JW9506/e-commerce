@@ -3,12 +3,12 @@ import { persistStore, persistReducer, PersistConfig } from "redux-persist";
 import localStorage from "redux-persist/lib/storage";
 import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
-import { fetchCollectionsStart } from "./shop/sagas";
 
 import userReducer, { UserReducerState } from "./user/reducer";
 import cartReducer, { CartState } from "./cart/reducer";
 import directoryReducer, { DirectoryState } from "./directory/reducer";
 import shopReducer, { ShopState } from "./shop/reducer";
+import rootSagas from "./rootSagas";
 import { isProduction } from "Config";
 
 export type RootState = {
@@ -43,6 +43,6 @@ export const store = createStore(
   composeEnhancers(applyMiddleware(...middlewares))
 );
 
-sagaMiddleware.run(fetchCollectionsStart);
+sagaMiddleware.run(rootSagas);
 
 export const persistor = persistStore(store);
