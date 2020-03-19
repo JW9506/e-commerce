@@ -2,9 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import { firebaseConfig } from "Config";
-import { $ElementType } from "utility-types";
 export type firebaseUnsubscribeAuth = firebase.Unsubscribe | null;
-
 firebase.initializeApp(firebaseConfig);
 export const firestore = firebase.firestore();
 export const auth = firebase.auth();

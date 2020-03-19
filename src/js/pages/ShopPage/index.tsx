@@ -1,11 +1,7 @@
 import React from "react";
 import { Route, withRouter, RouteComponentProps } from "react-router-dom";
-import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
-import {
-  fetchCollectionsStartAsync,
-  ShopAction
-} from "$redux/shop/action";
-import { ThunkDispatch } from "redux-thunk";
+import { connect, MapDispatchToProps } from "react-redux";
+import { fetchCollectionsStart } from "$redux/shop/action";
 import CollectionOverviewSpinnerContainer from "../../components/CollectionOverview/CollectionOverviewSpinnerContainer";
 import CollectionPageSpinnerContainer from "../CollectionPage/CollectionPageSpinnerContainer";
 
@@ -37,10 +33,11 @@ class ShopPage extends React.Component<ShopPageProps> {
   }
 }
 
-const mapDispatchToProps: MapDispatchToProps<MapDispatchProps, {}> = (
-  dispatch: ThunkDispatch<{}, {}, ShopAction>
-) => ({
-  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())
+const mapDispatchToProps: MapDispatchToProps<
+  MapDispatchProps,
+  {}
+> = dispatch => ({
+  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStart())
 });
 
 export default withRouter<
